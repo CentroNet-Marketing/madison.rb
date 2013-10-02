@@ -1,12 +1,12 @@
-require 'json'
+require 'multi_json'
 
 module Madison
   class Map
     attr_accessor :states
 
-    def states 
+    def states
       madison_dir = File.expand_path(File.dirname(File.dirname(__FILE__)))
-      @states ||= JSON.parse( File.open(File.join(madison_dir, "lib", "states.json")).read )
+      @states ||= MultiJson.load( File.open(File.join(madison_dir, "lib", "states.json")).read )
     end
 
     def get_abbrev(name)
@@ -31,7 +31,7 @@ module Madison
     def build_map(in_key, out_key)
       states.inject({}) do |map, state|
         map[state[in_key].downcase] = state[out_key]
-        map 
+        map
       end
     end
 

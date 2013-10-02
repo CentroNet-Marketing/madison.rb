@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "json", "1.8.0"
+gem "multi_json"
 
 group :development do
   gem "rake", "10.0.4"
